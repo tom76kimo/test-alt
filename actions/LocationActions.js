@@ -7,18 +7,22 @@ class LocationActions {
     }
 
     fetchLocations() {
-        this.dispatch(locations);
+        this.dispatch();
         LocationFetcher.fetch()
             .then((locations) => {
                 this.actions.updateLocations(locations);
             })
-            .catch((error) => {
+            .catch((errorMessage) => {
                 this.actions.locationsFailed(errorMessage);
             });
     }
 
     locationsFailed(errorMessage) {
         this.dispatch(errorMessage);
+    }
+
+    favoriteLocation(locationId) {
+        this.dispatch(locationId);
     }
 }
 
